@@ -27,7 +27,7 @@ export function formatTime(data: string) {
   )
 }
 
-export function debounced<Callback extends (...args: any[]) => any>(
+export function debounced<Callback extends (...args: unknown[]) => unknown>(
   callback: Callback,
   timeout: number,
 ): (...args: Parameters<Callback>) => void {

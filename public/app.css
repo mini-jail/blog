@@ -137,7 +137,7 @@ article {
     gap: 8px;
   }
   pre {
-    word-break: break-all;
+    word-break: break-word;
     white-space: normal;
   }
   .media {
