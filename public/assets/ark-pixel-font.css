@@ -1,0 +1,49 @@
+@font-face {
+  font-family: "ark-pixel-mono";
+  src: url("ark-pixel-10px-monospaced-ja.woff2") format("woff2"),
+    url("ark-pixel-10px-monospaced-ko.woff2") format("woff2"),
+    url("ark-pixel-10px-monospaced-latin.woff2") format("woff2"),
+    url("ark-pixel-10px-monospaced-zh_cn.woff2") format("woff2"),
+    url("ark-pixel-10px-monospaced-zh_hk.woff2") format("woff2"),
+    url("ark-pixel-10px-monospaced-zh_tr.woff2") format("woff2"),
+    url("ark-pixel-10px-monospaced-zh_tw.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "ark-pixel";
+  src: url("ark-pixel-10px-proportional-ja.woff2") format("woff2"),
+    url("ark-pixel-10px-proportional-ko.woff2") format("woff2"),
+    url("ark-pixel-10px-proportional-latin.woff2") format("woff2"),
+    url("ark-pixel-10px-proportional-zh_cn.woff2") format("woff2"),
+    url("ark-pixel-10px-proportional-zh_hk.woff2") format("woff2"),
+    url("ark-pixel-10px-proportional-zh_tr.woff2") format("woff2"),
+    url("ark-pixel-10px-proportional-zh_tw.woff2") format("woff2");
+}
+
+*,
+* * {
+  font-family: "ark-pixel";
+  font-size: 20px;
+  image-rendering: crisp-edges;
+  font-weight: normal;
+}
+
+h1 {
+  font-size: 60px;
+}
+
+h2 {
+  font-size: 50px;
+}
+
+h3 {
+  font-size: 40px;
+}
+
+h4 {
+  font-size: 30px;
+}
+
+h5 {
+  font-size: 20px;
+}

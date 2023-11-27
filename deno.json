@@ -1,0 +1,18 @@
+{
+  "fmt": {
+    "options": {
+      "indentWidth": 2,
+      "lineWidth": 80,
+      "semiColons": false
+    }
+  },
+  "importMap": "./import_map.json",
+  "lock": false,
+  "compilerOptions": {
+    "lib": ["DOM", "ESNext", "deno.ns"],
+    "allowUnreachableCode": true,
+    "allowJs": true,
+    "noImplicitAny": false,
+    "checkJs": true
+  }
+}
