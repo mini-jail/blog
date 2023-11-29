@@ -76,7 +76,7 @@ main {
   width: 600px;
   max-width: 1024px;
 
-  @media only screen and (max-width: 800px) {
+  @media only screen and (max-width: 768px) {
     width: 100%;
   }
 }
@@ -126,20 +126,10 @@ body {
 }
 
 article {
-  padding: 8px;
-  display: flex;
-  gap: 8px;
-  flex-direction: column;
   background-color: #00000005;
 
   > header {
-    display: flex;
     justify-content: right;
-  }
-
-  > footer {
-    display: flex;
-    gap: 8px;
   }
 
   > .content {
@@ -202,12 +192,21 @@ article {
   }
 
   > .container {
-    padding: 8px;
+    flex-wrap: wrap;
+    height: inherit;
+    scroll-snap-type: x mandatory;
+    overflow-x: scroll;
+    -webkit-overflow-scrolling: touch;
+    scroll-snap-align: center;
+
+    @media screen and (min-width: 768px) {
+      flex-wrap: wrap;
+    }
 
     > .content {
       margin: 0 auto;
       display: block;
-      height: 100%;
+      height: inherit;
       max-width: 100%;
       object-fit: contain;
       object-position: center center;
@@ -216,25 +215,34 @@ article {
   }
 
   > header {
-    position: sticky;
+    position: fixed;
     top: 0;
     left: 0;
     z-index: 1;
-    display: flex;
+    width: inherit;
     justify-content: end;
 
     > .close {
-      box-shadow: 4px 4px 0px #00000022;
       margin: 12px;
-      cursor: pointer;
-      background-color: #000000;
-      color: white;
-      padding: 4px;
       &:hover {
         color: #000000;
         background-color: red;
       }
     }
+  }
+}
+
+button {
+  outline: none;
+  border: none;
+  box-shadow: 4px 4px 0px #00000022;
+  cursor: pointer;
+  background-color: #000000;
+  color: white;
+  padding: 4px 8px;
+  transition: box-shadow 250ms;
+  &:hover {
+    box-shadow: 2px 2px 0px #00000022;
   }
 }
 

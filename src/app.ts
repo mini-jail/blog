@@ -1,6 +1,6 @@
 import { createEffect, createSignal, onMount } from "jail/signal"
 import { mount, type RenderResult, template } from "jail/dom"
-import { debounced, fromAsync } from "./helpers.ts"
+import { fromAsync } from "./helpers.ts"
 import { fetchAccount, fetchPosts } from "./mastodon_client.ts"
 import { ActiveMedia, closeMedia, hasMedia, mediaSize } from "./media.ts"
 import { Article } from "./components/article.ts"
@@ -24,27 +24,24 @@ function Application() {
 
   onMount(() => {
     let lastId = "", loading = false
-    addEventListener(
-      "scroll",
-      debounced(async () => {
-        if (loading) {
-          return
-        }
-        const { scrollHeight, scrollTop } = html()
-        if ((scrollTop / scrollHeight) <= 0.75) {
-          return
-        }
-        loading = true
-        const lastPostId = posts().at(-1)?.id || lastId
-        if (lastId === lastPostId) {
-          return
-        }
-        const morePosts = await fetchPosts(lastPostId)
-        posts(posts().concat(morePosts))
-        lastId = lastPostId
-        loading = false
-      }, 500),
-    )
+    addEventListener("scroll", async () => {
+      if (loading) {
+        return
+      }
+      const { scrollHeight, scrollTop } = html()
+      if ((scrollTop / scrollHeight) <= 0.75) {
+        return
+      }
+      loading = true
+      const lastPostId = posts().at(-1)?.id || lastId
+      if (lastId === lastPostId) {
+        return
+      }
+      const morePosts = await fetchPosts(lastPostId)
+      posts(posts().concat(morePosts))
+      lastId = lastPostId
+      loading = false
+    })
   })
 
   return template`
@@ -59,10 +56,10 @@ function Application() {
       ${PostElements}
     </main>
     <div class="active-media" data-size=${mediaSize}>
-      <header>
-        <div class="close" d-on:click=${closeMedia}>close</div>
+      <header class="flex">
+        <button class="close" d-on:click=${closeMedia}>close</button>
       </header>
-      <div class="container">${ActiveMedia}</div>
+      <div class="container flex pad-2">${ActiveMedia}</div>
     </div>
   `
 }

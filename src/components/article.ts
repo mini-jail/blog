@@ -13,8 +13,8 @@ export function Article(post: MastodonPost) {
     `
   })
   return template`
-    <article data-post-id=${post.id}>
-      <header>
+    <article data-post-id=${post.id} class="flex column gap-2 pad-2">
+      <header class="flex">
         <time>${formatTime(post.createdAt)}</time>
       </header>
       <div class="content">
@@ -23,7 +23,7 @@ export function Article(post: MastodonPost) {
           ${media}
         </div>
       </div>
-      <footer>
+      <footer class="flex row gap-2">
         <div>replies: ${post.repliesCount}</div>
         <div>reblogs: ${post.reblogsCount}</div>
       </footer>
