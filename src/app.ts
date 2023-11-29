@@ -1,17 +1,18 @@
 import { createEffect, createSignal, onMount } from "jail/signal"
 import { mount, type RenderResult, template } from "jail/dom"
-import { debounced, fetchJSON, fromAsync } from "./helpers.ts"
-import { closeMedia, getActiveMedia, hasMedia, mediaSize } from "./media.ts"
+import { debounced, fromAsync } from "./helpers.ts"
+import { fetchAccount, fetchPosts } from "./mastodon_client.ts"
+import { ActiveMedia, closeMedia, hasMedia, mediaSize } from "./media.ts"
 import { Article } from "./components/article.ts"
 
 function Application() {
   const html = createSignal(document.documentElement)
-  const account = fromAsync(() => fetchJSON<MastodonAccount>("/api/account"))
-  const posts = fromAsync(() => fetchJSON<MastodonPost[]>("/api/post"), [])
+  const account = fromAsync(fetchAccount)
+  const posts = fromAsync(fetchPosts, [])
   const displayName = () => account()?.displayName ?? "..."
   const description = () => account()?.textContent ?? "..."
   const avatarImage = () => account()?.avatar ?? "unset"
-  function* postElements(): Iterable<RenderResult> {
+  function* PostElements(): Iterable<RenderResult> {
     for (const post of posts()) {
       yield Article(post)
     }
@@ -38,9 +39,7 @@ function Application() {
         if (lastId === lastPostId) {
           return
         }
-        const morePosts = await fetchJSON<MastodonPost[]>(
-          "/api/post/" + lastPostId,
-        )
+        const morePosts = await fetchPosts(lastPostId)
         posts(posts().concat(morePosts))
         lastId = lastPostId
         loading = false
@@ -57,13 +56,13 @@ function Application() {
       </div>
     </header>
     <main class="flex column gap-2 pad-2">
-      ${postElements}
+      ${PostElements}
     </main>
-    <div d-if=${hasMedia} class="active-media" data-size=${mediaSize}>
+    <div class="active-media" data-size=${mediaSize}>
       <header>
         <div class="close" d-on:click=${closeMedia}>close</div>
       </header>
-      <div class="container">${getActiveMedia}</div>
+      <div class="container">${ActiveMedia}</div>
     </div>
   `
 }

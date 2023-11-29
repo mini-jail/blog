@@ -1,14 +1,13 @@
 import { RenderResult, template } from "jail/dom"
 import { createSignal } from "jail/signal"
 
-export const activeMedia = createSignal<Set<MastodonMediaAttachment>>(new Set())
-export const mediaSize = () => activeMedia().size
+export const activeMedia = createSignal<MastodonMediaAttachment[]>([])
+export const mediaSize = () => activeMedia().length
 export const hasMedia = () => mediaSize() > 0
 export const closeMedia = () => {
-  activeMedia().clear()
-  activeMedia(activeMedia())
+  activeMedia([])
 }
-export function* getActiveMedia(): Iterable<RenderResult> {
+export function* ActiveMedia(): Iterable<RenderResult> {
   if (hasMedia() === false) {
     return
   }

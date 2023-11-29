@@ -1,15 +1,4 @@
-import {
-  MastodonAccount,
-  MastodonAccountRaw,
-  MastodonMediaAttachment,
-  MastodonMediaAttachmentRaw,
-  MastodonPost,
-  MastodonPostRaw,
-} from "./types.d.ts"
-
-const ACCOUNT_ID = Deno.env.get("MASTODON_ACC")
-const MASTODON_URL = Deno.env.get("MASTODON_URL")
-const API_ACCOUNT = `${MASTODON_URL}/api/v1/accounts/${ACCOUNT_ID}`
+const API_ACCOUNT = `https://mas.to/api/v1/accounts/109261778853799326`
 const API_POSTS = `${API_ACCOUNT}/statuses?exclude_replies=true`
 
 async function fetchRawPosts(maxId: string): Promise<MastodonPostRaw[]> {
@@ -80,6 +69,9 @@ export async function fetchAccount(): Promise<MastodonAccount | undefined> {
   }
 }
 
-export async function fetchPosts(maxId: string) {
+export async function fetchPosts(maxId?: string) {
+  if (maxId === undefined || maxId === null) {
+    maxId = ""
+  }
   return (await fetchRawPosts(maxId)).map(toMastodonPost)
 }

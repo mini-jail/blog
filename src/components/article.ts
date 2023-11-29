@@ -3,13 +3,8 @@ import { formatTime } from "../helpers.ts"
 import { activeMedia } from "../media.ts"
 
 export function Article(post: MastodonPost) {
-  const showMedia = () => {
-    for (const media of post.mediaContent) {
-      activeMedia().add(media)
-    }
-    activeMedia(activeMedia())
-  }
-  const media = post.mediaContent.map((media) => {
+  const showMedia = () => activeMedia(post.mediaContent)
+  const media = post.mediaContent.length && post.mediaContent.map((media) => {
     return template`
       <img 
         src=${media.previewUrl}

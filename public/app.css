@@ -132,22 +132,24 @@ article {
   gap: 8px;
   flex-direction: column;
   background-color: #00000005;
+
+  header {
+    display: flex;
+    justify-content: right;
+  }
+
   footer {
     display: flex;
     gap: 8px;
   }
+
   pre {
     word-break: break-word;
     white-space: normal;
   }
+
   .media {
     gap: 4px;
-    img {
-      object-fit: cover;
-      object-position: center center;
-      background-color: #00000005;
-      cursor: pointer;
-    }
     &[data-size] {
       img {
         width: 128px;
@@ -166,6 +168,13 @@ article {
         width: 50%;
       }
     }
+
+    img {
+      object-fit: cover;
+      object-position: center center;
+      background-color: #00000005;
+      cursor: pointer;
+    }
   }
 }
 
@@ -180,8 +189,20 @@ article {
   display: block;
   overflow: auto;
   z-index: 999;
+  opacity: 1;
+  transition: 250ms;
+  pointer-events: all;
+  transform: scale(1);
+  &[data-size="0"] {
+    opacity: 0;
+    transform: scale(1.25);
+    pointer-events: none;
+    backdrop-filter: blur(0em);
+  }
+
   .container {
     padding: 8px;
+
     .content {
       margin: 0 auto;
       display: block;
@@ -192,9 +213,7 @@ article {
       filter: drop-shadow(4px 4px 0px #00000055);
     }
   }
-  &[data-size="0"] {
-    display: none;
-  }
+
   header {
     position: sticky;
     top: 0;
@@ -202,8 +221,10 @@ article {
     z-index: 1;
     display: flex;
     justify-content: end;
+
     .close {
-      margin: 8px;
+      box-shadow: 4px 4px 0px #00000022;
+      margin: 12px;
       cursor: pointer;
       background-color: #000000;
       color: white;
