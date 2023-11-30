@@ -1,11 +1,18 @@
 declare global {
-  export type MastodonMediaAttachment = {
+  type MastodonMediaAttachment = {
     type: string
     url: string
     previewUrl: string
   }
 
-  export type MastodonMediaAttachmentRaw = {
+  type MastodonMediaAttachmentMeta = {
+    width: number
+    height: number
+    size: string
+    aspect: number
+  }
+
+  type MastodonMediaAttachmentRaw = {
     id: string
     type: string
     url: string
@@ -14,24 +21,14 @@ declare global {
     preview_remote_url: string | null
     text_url: string | null
     meta: {
-      original: {
-        width: number
-        height: number
-        size: string
-        aspect: number
-      }
-      small: {
-        width: number
-        height: number
-        size: string
-        aspect: number
-      }
+      original: MastodonMediaAttachmentMeta
+      small: MastodonMediaAttachmentMeta
     }
     description: string | null
     blurhash: string
   }
 
-  export type MastodonAccount = {
+  type MastodonAccount = {
     displayName: string
     textContent: string
     avatar: string
@@ -39,9 +36,16 @@ declare global {
     followersCount: number
     followingCount: number
     statusesCount: number
+    url: string
   }
 
-  export type MastodonAccountRaw = {
+  type MastodonAccountField = {
+    name: string
+    value: string
+    verified_at: string | null
+  }
+
+  type MastodonAccountRaw = {
     id: string
     username: string
     acct: string
@@ -65,16 +69,15 @@ declare global {
     noindex: boolean
     emojis: unknown[]
     roles: unknown[]
-    fields: {
-      [index: number]: {
-        name: string
-        value: string
-        verified_at: string | null
-      }
-    }
+    fields: Record<number, MastodonAccountField>
   }
 
-  export type MastodonPostRaw = {
+  type MastodonApplication = {
+    name: string
+    website: unknown
+  }
+
+  type MastodonPostRaw = {
     id: string
     created_at: string
     in_reply_to_id: string | null
@@ -85,15 +88,12 @@ declare global {
     language: string
     uri: string
     url: string
-    replies_count: 0
-    reblogs_count: 0
+    replies_count: number
+    reblogs_count: number
     edited_at: string | null
     content: string
     reblog: unknown
-    application: {
-      name: string
-      website: null
-    }
+    application: MastodonApplication
     account: MastodonAccountRaw
     media_attachments: MastodonMediaAttachmentRaw[]
     mentions: unknown[]
@@ -103,7 +103,7 @@ declare global {
     poll: unknown
   }
 
-  export type MastodonPost = {
+  type MastodonPost = {
     id: string
     createdAt: string
     editedAt: string | null

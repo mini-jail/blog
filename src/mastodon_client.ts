@@ -1,11 +1,19 @@
+import { stringFromCharCode, stringFromEntityMap } from "./helpers.ts"
+
 const ACCOUNT_ID = "109261778853799326"
 const API_URL = "https://mas.to/api/v1"
 const API_ACCOUNT = `${API_URL}/accounts/${ACCOUNT_ID}`
-const API_POSTS = `${API_ACCOUNT}/statuses?exclude_replies=true`
+const API_POSTS = `${API_ACCOUNT}/statuses`
+const POSTS_URL = new URL(API_POSTS)
 
-async function fetchRawPosts(maxId: string): Promise<MastodonPostRaw[]> {
+async function fetchRawPosts(maxId?: string): Promise<MastodonPostRaw[]> {
   try {
-    const req = await fetch(`${API_POSTS}&max_id=${maxId}`, {
+    POSTS_URL.searchParams.set("exclude_replies", "true")
+    POSTS_URL.searchParams.delete("max_id")
+    if (maxId) {
+      POSTS_URL.searchParams.set("max_id", maxId)
+    }
+    const req = await fetch(POSTS_URL, {
       headers: {
         "Content-Type": "application/json",
       },
@@ -32,8 +40,8 @@ function toTextContent(data: string): string {
     .replace(/<p>([^<]*)<\/p>/gm, "$1\n")
     .replace(/<br\s*?\/>/gm, "\n")
     .replace(/<[^>]*>/gm, "")
-    .replace(/\n$/, "")
-    .replace(/&#(\d+);/g, (_match, code) => String.fromCharCode(code))
+    .replace(/&(\w+);/g, stringFromEntityMap)
+    .replace(/&#(\d+);/g, stringFromCharCode)
 }
 
 function toMastodonPost(post: MastodonPostRaw): MastodonPost {
@@ -64,6 +72,7 @@ export async function fetchAccount(): Promise<MastodonAccount | undefined> {
       followersCount: raw.followers_count,
       followingCount: raw.following_count,
       statusesCount: raw.statuses_count,
+      url: raw.url,
     }
     return account
   } catch (error) {

@@ -21,6 +21,11 @@ body {
   overflow: auto;
 }
 
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
 .flex {
   display: flex;
   &.align-center {
@@ -95,7 +100,7 @@ body {
       text-shadow: 2px 2px 0px #00000022;
     }
 
-    > .avatar {
+    & .avatar {
       object-fit: cover;
       object-position: center center;
       width: 64px;
@@ -115,7 +120,7 @@ article {
   > .content {
     > pre {
       word-break: break-word;
-      white-space: normal;
+      white-space: pre-wrap;
     }
 
     > .media {
@@ -149,6 +154,12 @@ article {
   }
 }
 
+.lang {
+  &:hover {
+    background-color: palevioletred;
+  }
+}
+
 .active-media {
   position: fixed;
   top: 0;
@@ -156,14 +167,15 @@ article {
   width: 100%;
   height: 100%;
   background-color: #ffffff55;
-  backdrop-filter: blur(1em) saturate(2);
   display: block;
   overflow: auto;
   z-index: 999;
-  opacity: 1;
   transition: 250ms;
+  opacity: 1;
   pointer-events: all;
   transform: scale(1);
+  backdrop-filter: blur(1em) saturate(2);
+
   &[data-size="0"] {
     opacity: 0;
     transform: scale(1.25);
@@ -216,7 +228,7 @@ button {
   cursor: pointer;
   background-color: #000000;
   color: white;
-  padding: 4px 8px;
+  padding: 4px 16px;
   transition: box-shadow 250ms;
   &:hover {
     box-shadow: 2px 2px 0px #00000022;

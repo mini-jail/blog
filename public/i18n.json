@@ -1,0 +1,58 @@
+{
+  "de": {
+    "language": "Sprache",
+    "replies": "Antworten",
+    "reblogs": "Rebloggt",
+    "close": "Schließen",
+    "{} seconds ago": "Vor {} Sekunden",
+    "{} minutes ago": "Vor {} Minuten",
+    "{} hours ago": "Vor {} Stunden",
+    "{} days ago": "Vor {} Tagen",
+    "{} months ago": "Vor {} Monaten",
+    "{} years ago": "Vor {} Jahren",
+    "posted on {}": "Gepostet am {}",
+    "visit me on mastodon": "Besuche mich auf Mastodon"
+  },
+  "en": {
+    "language": "language",
+    "replies": "replies",
+    "reblogs": "reblogs",
+    "close": "close",
+    "{} seconds ago": "{} seconds ago",
+    "{} minutes ago": "{} minutes ago",
+    "{} hours ago": "{} hours ago",
+    "{} days ago": "{} days ago",
+    "{} months ago": "{} months ago",
+    "{} years ago": "{} years ago",
+    "posted on {}": "posted on {}",
+    "visit me on mastodon": "visit me on mastodon"
+  },
+  "jp": {
+    "language": "言語",
+    "replies": "返信する",
+    "reblogs": "リブログ",
+    "close": "クローズ",
+    "{} seconds ago": "{}秒前",
+    "{} minutes ago": "{}分前",
+    "{} hours ago": "{}時間前",
+    "{} days ago": "{}日前",
+    "{} months ago": "{}ヶ月前",
+    "{} years ago": "{}年前",
+    "posted on {}": "「{}」に投稿しました",
+    "visit me on mastodon": "マストドンで私に会いに来てください"
+  },
+  "ru": {
+    "language": "язык",
+    "replies": "ответы",
+    "reblogs": "реблоги",
+    "close": "закрывать",
+    "{} seconds ago": "{} секунды назад",
+    "{} minutes ago": "{} минут назад",
+    "{} hours ago": "{} несколько часов назад",
+    "{} days ago": "{} дней назад",
+    "{} months ago": "{} несколько месяцев назад",
+    "{} years ago": "{} много лет назад",
+    "posted on {}": "Опубликовано {}",
+    "visit me on mastodon": "загляни ко мне на мастодонте"
+  }
+}
