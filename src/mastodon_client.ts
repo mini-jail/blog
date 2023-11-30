@@ -1,4 +1,6 @@
-const API_ACCOUNT = `https://mas.to/api/v1/accounts/109261778853799326`
+const ACCOUNT_ID = "109261778853799326"
+const API_URL = "https://mas.to/api/v1"
+const API_ACCOUNT = `${API_URL}/accounts/${ACCOUNT_ID}`
 const API_POSTS = `${API_ACCOUNT}/statuses?exclude_replies=true`
 
 async function fetchRawPosts(maxId: string): Promise<MastodonPostRaw[]> {

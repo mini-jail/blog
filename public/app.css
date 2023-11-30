@@ -85,25 +85,6 @@ main {
 }
 
 body {
-  &::after,
-  &::before {
-    content: "";
-    width: 100%;
-    position: fixed;
-    height: 24px;
-    left: 0;
-  }
-  &::before {
-    background: linear-gradient(to bottom, white 0%, transparent 100%);
-    top: 0;
-  }
-  &::after {
-    background: linear-gradient(to top, white 0%, transparent 100%);
-    bottom: 0;
-  }
-}
-
-body {
   > header {
     background-color: #ffffff55;
     backdrop-filter: blur(1em) saturate(2);
