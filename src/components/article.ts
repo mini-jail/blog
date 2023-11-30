@@ -14,7 +14,7 @@ export function Article(post: MastodonPost) {
   })
   return template`
     <article data-post-id=${post.id} class="flex column gap-2 pad-2">
-      <header class="flex">
+      <header class="flex justify-right">
         <time>${formatTime(post.createdAt)}</time>
       </header>
       <div class="content">
