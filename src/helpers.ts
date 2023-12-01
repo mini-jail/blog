@@ -60,10 +60,10 @@ export function debounced<Callback extends (...args: unknown[]) => unknown>(
   timeout: number,
 ): (...args: Parameters<Callback>) => void {
   let timeHandle: number
-  return (function (...args) {
+  return (...args) => {
     clearTimeout(timeHandle)
     timeHandle = setTimeout(callback, timeout, ...args)
-  }) as Callback
+  }
 }
 
 export function stringFromCharCode(_match: string, code: number) {

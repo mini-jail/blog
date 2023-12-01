@@ -63,6 +63,7 @@ export const T = new Proxy<TranslationMap>(Object.create(null), {
 
 /**
  * <div d-t:textContent="hello lol"></div>
+ * <div d-t="hello lol"></div>
  */
 export function installI18N() {
   createDirective<Key>("t", (elt, binding) => {

@@ -9,21 +9,8 @@ import {
   mediaSize,
 } from "./components/media.ts"
 import { Article } from "./components/article.ts"
-import { installI18N, language, languages, T, t } from "./i18n.ts"
-
-function LanguageButtons() {
-  return languages.map((lang) => {
-    return template`
-      <button 
-        class="lang" 
-        data-selected=${() => language() === lang} 
-        d-on:click.delegate=${() => language(lang)}
-      >
-        ${lang}
-      </button>
-    `
-  })
-}
+import { installI18N, T, t } from "./i18n.ts"
+import { LanguageButtons } from "./components/language-buttons.ts"
 
 function Application() {
   const html = createSignal(document.documentElement)
