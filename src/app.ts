@@ -39,7 +39,7 @@ function Application() {
     const { scrollHeight, scrollTop } = html(),
       scrolled = scrollTop / scrollHeight,
       lastPostId = posts().at(-1)?.id || onScroll.lastId
-    if (scrolled <= 0.75) {
+    if (scrolled <= 0.5) {
       return
     }
     onScroll.loading = true

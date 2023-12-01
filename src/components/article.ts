@@ -1,7 +1,7 @@
 import { template } from "jail/dom"
 import { formatTime } from "../helpers.ts"
 import { activeMedia } from "./media.ts"
-import { T, t } from "../i18n.ts"
+import { t } from "../i18n.ts"
 
 function MediaPreview(media: MastodonMediaAttachment) {
   return template`<img src=${media.previewUrl} />`
@@ -29,10 +29,6 @@ export function Article(post: MastodonPost) {
           ${media}
         </div>
       </div>
-      <footer class="flex row gap-2">
-        <div>${T.replies}: ${post.repliesCount}</div>
-        <div>${T.reblogs}: ${post.reblogsCount}</div>
-      </footer>
     </article>
   `
 }
