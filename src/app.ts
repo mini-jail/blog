@@ -14,7 +14,11 @@ import { installI18N, language, languages, T, t } from "./i18n.ts"
 function LanguageButtons() {
   return languages.map((lang) => {
     return template`
-      <button class="lang" d-on:click.delegate=${() => language(lang)}>
+      <button 
+        class="lang" 
+        data-selected=${() => language() === lang} 
+        d-on:click.delegate=${() => language(lang)}
+      >
         ${lang}
       </button>
     `

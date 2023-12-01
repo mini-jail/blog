@@ -204,6 +204,9 @@ article {
 }
 
 .lang {
+  &[data-selected="true"] {
+    background-color: palevioletred;
+  }
   &:hover {
     background-color: palevioletred;
   }
