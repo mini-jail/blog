@@ -11,10 +11,26 @@ export function* ActiveMedia(): Iterable<RenderResult> {
   }
   for (const media of activeMedia()) {
     if (media.type === "image") {
-      yield template`<img class="content" src=${media.url} />`
+      yield template`
+        <img 
+          class="content"
+          width=${media.meta.width}
+          height=${media.meta.height}
+          src=${media.url}
+        />
+      `
     }
     if (media.type === "gifv") {
-      yield template`<video class="content" src=${media.url} autoplay loop></video>`
+      yield template`
+        <video 
+          class="content"
+          src=${media.url}
+          width=${media.meta.width}
+          height=${media.meta.height}
+          autoplay=""
+          loop=""
+        ></video>
+      `
     }
   }
 }

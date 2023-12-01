@@ -7,23 +7,68 @@
   box-sizing: border-box;
 }
 
+:root {
+  color-scheme: light dark;
+}
+
 html {
-  color: black;
-  background-color: #ffffff;
+  color: light-dark(black, white);
+  background-color: light-dark(white, black);
   &[data-scrollable="false"] {
     overflow: hidden;
   }
 }
 
-body {
-  width: inherit;
-  height: inherit;
-  overflow: auto;
-}
-
 a {
   color: inherit;
   text-decoration: none;
+}
+
+.bio {
+  > header {
+    height: 200px;
+    background-size: cover;
+    background-position: center center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    & .avatar {
+      border: 4px solid white;
+      background-color: white;
+      box-shadow: 4px 4px 0px #00000022;
+      width: 128px;
+      height: 128px;
+      background-size: contain;
+      background-position: center center;
+      animation-name: bounce-in;
+      animation-duration: 1s;
+      animation-iteration-count: 1;
+    }
+  }
+
+  & label {
+    background-color: light-dark(#ffffff, #ffffff15);
+    padding: 4px 8px;
+    flex: 1;
+    display: flex;
+    gap: 8px;
+    overflow: hidden;
+    height: max-content;
+
+    > span {
+      user-select: none;
+      &::after {
+        content: ":";
+      }
+    }
+
+    > pre {
+      text-overflow: ellipsis;
+      overflow: hidden;
+      flex: inherit;
+    }
+  }
 }
 
 .flex {
@@ -71,11 +116,11 @@ a {
   padding: 8px;
 }
 
-.pad-4 {
+.pad-3 {
   padding: 12px;
 }
 
-.pad-5 {
+.pad-4 {
   padding: 16px;
 }
 
@@ -83,7 +128,6 @@ main {
   margin: 0 auto;
   width: 600px;
   max-width: 1024px;
-
   @media only screen and (max-width: 768px) {
     width: 100%;
   }
@@ -91,31 +135,29 @@ main {
 
 body {
   > header {
-    background-color: #ffffff55;
+    background-color: light-dark(#ffffffaa, #000000aa);
     backdrop-filter: blur(1em) saturate(2);
     position: sticky;
     top: 0;
+    z-index: 999;
 
     > h4 {
-      text-shadow: 2px 2px 0px #00000022;
+      text-shadow: 2px 2px 0px light-dark(#00000015, #ffffff55);
     }
 
     & .avatar {
-      object-fit: cover;
-      object-position: center center;
-      width: 64px;
-      height: 64px;
-      box-shadow: 4px 4px 0px #00000022;
-      animation-name: bounce-in;
-      animation-duration: 500ms;
-      animation-iteration-count: 1;
-      background-color: #00000022;
+      background-size: contain;
+      background-position: center center;
+      width: 48px;
+      height: 48px;
+      box-shadow: 4px 4px 0px light-dark(#00000015, #ffffff55);
+      background-color: white;
     }
   }
 }
 
 article {
-  background-color: #00000005;
+  background-color: light-dark(#00000005, #ffffff15);
 
   > .content {
     > pre {
@@ -125,6 +167,7 @@ article {
 
     > .media {
       gap: 4px;
+      background-color: light-dark(#ffffff15, #ffffff15);
       &[data-size] {
         > img {
           width: 128px;
@@ -141,6 +184,12 @@ article {
         display: flex;
         > img {
           width: 50%;
+        }
+      }
+      &[data-size="3"] {
+        display: flex;
+        > img {
+          width: calc(100% / 3);
         }
       }
 
@@ -166,7 +215,7 @@ article {
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: #ffffff55;
+  background-color: light-dark(#ffffffaa, #000000aa);
   display: block;
   overflow: auto;
   z-index: 999;
@@ -199,7 +248,6 @@ article {
       max-width: 100%;
       object-fit: contain;
       object-position: center center;
-      filter: drop-shadow(4px 4px 0px #00000055);
     }
   }
 
@@ -214,7 +262,6 @@ article {
     > .close {
       margin: 12px;
       &:hover {
-        color: #000000;
         background-color: red;
       }
     }
@@ -224,36 +271,38 @@ article {
 button {
   outline: none;
   border: none;
-  box-shadow: 4px 4px 0px #00000022;
+  box-shadow: 4px 4px 0px light-dark(#00000015, #ffffff55);
   cursor: pointer;
-  background-color: #000000;
-  color: white;
+  background-color: light-dark(black, white);
+  color: light-dark(white, black);
   padding: 4px 16px;
   transition: box-shadow 250ms;
   &:hover {
-    box-shadow: 2px 2px 0px #00000022;
+    box-shadow: 2px 2px 0px light-dark(#00000015, #ffffff55);
   }
 }
 
 @keyframes bounce-in {
   0% {
-    opacity: 0;
     transform: translateY(-128px);
-  }
-  30% {
-    opacity: 1;
-    transform: translateY(-64px);
+    opacity: 0;
   }
   50% {
-    transform: translateY(-8px);
   }
   60% {
-    transform: translateY(8px);
+    transform: translateY(-64px);
   }
   70% {
-    transform: translateY(-2px);
+    transform: translateY(-8px);
+  }
+  75% {
+    transform: translateY(8px);
   }
   80% {
+    opacity: 1;
+    transform: translateY(-2px);
+  }
+  85% {
     transform: translateY(2px);
   }
   100% {

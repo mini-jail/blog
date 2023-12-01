@@ -18,7 +18,11 @@ export const languages = Object.keys(translations) as Language[]
 export const language = createRoot(() => {
   const stored = localStorage.getItem("i18n") as Language | null
   const language = createSignal<Language>(
-    stored && languages.includes(stored) ? stored : languages[0],
+    stored && languages.includes(stored)
+      ? stored
+      : languages.includes(navigator.language as Language)
+      ? navigator.language as Language
+      : languages[0],
   )
   createEffect(() => localStorage.setItem("i18n", language()))
   return language

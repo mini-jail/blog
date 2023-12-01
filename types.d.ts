@@ -3,6 +3,7 @@ declare global {
     type: string
     url: string
     previewUrl: string
+    meta: MastodonMediaAttachmentMeta
   }
 
   type MastodonMediaAttachmentMeta = {
@@ -37,6 +38,7 @@ declare global {
     followingCount: number
     statusesCount: number
     url: string
+    fields: MastodonAccountField[]
   }
 
   type MastodonAccountField = {
@@ -69,7 +71,7 @@ declare global {
     noindex: boolean
     emojis: unknown[]
     roles: unknown[]
-    fields: Record<number, MastodonAccountField>
+    fields: MastodonAccountField[]
   }
 
   type MastodonApplication = {

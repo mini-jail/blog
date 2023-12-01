@@ -1,6 +1,6 @@
 import { template } from "jail/dom"
 import { formatTime } from "../helpers.ts"
-import { activeMedia } from "../media.ts"
+import { activeMedia } from "./media.ts"
 import { T, t } from "../i18n.ts"
 
 function MediaPreview(media: MastodonMediaAttachment) {
