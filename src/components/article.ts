@@ -24,7 +24,7 @@ export function Article(post: MastodonPost) {
       </header>
       <div class="content">
         <pre>${post.textContent}</pre>
-        <div
+        <div 
           class="media"
           data-size=${post.mediaContent.length}
           d-on:click.delegate=${showMedia}
