@@ -11,17 +11,20 @@ type TimestampArray = [
 
 type Reactive<T> = () => T
 
-export function fromAsync<T>(promiseGetter: () => Promise<T>): Signal<T>
+export function fromAsync<T>(promiseSignal: () => Promise<T>): Signal<T>
 export function fromAsync<T>(
-  promiseGetter: () => Promise<T>,
+  promiseSignal: () => Promise<T>,
   initialValue: T,
 ): Signal<T>
 export function fromAsync<T>(
-  promiseGetter: () => Promise<T>,
+  promiseSignal: () => Promise<T>,
   initialValue?: T,
 ) {
   const signal = createSignal(initialValue)
-  createEffect(() => promiseGetter().then(signal))
+  createEffect(() => {
+    promiseSignal()
+      .then((value) => signal(value))
+  })
   return signal
 }
 
